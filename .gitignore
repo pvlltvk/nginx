@@ -1,0 +1,3 @@
+/rewrites
+/vhosts.d/*.conf
+*~
