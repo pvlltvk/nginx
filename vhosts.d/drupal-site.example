@@ -1,0 +1,17 @@
+server {
+  listen *:8080;
+
+  server_name www.example.org;
+
+  access_log /var/log/nginx/example.access.log main;
+  error_log  /var/log/nginx/example.error.log warn;
+
+  root /var/www/drupal7;
+
+  include drupal;
+}
+
+server {
+        server_name example.org;
+        rewrite ^ $scheme://www.example.org$request_uri? permanent;
+}
