@@ -1,3 +1,4 @@
 /rewrites
 /vhosts.d/*.conf
 *~
+*.sublime-*
