@@ -16,11 +16,22 @@
   location /.git {
     return 404;
   }
-  
+
   # robots.txt is important for search engines
   location /robots.txt {
     access_log off;
+
+    ## uncomment for robotstxt module
+    #try_files $uri @drupal;
   }
+
+  ## uncomment for humanstxt module
+  #location /humans.txt {
+  #  access_log off;
+
+  #  try_files $uri @drupal;
+  #}
+
 
   # This is mostly based on Drupal's stock .htaccess
 #  location ~* ^.+(\.(txt|engine|inc|info|install|module|profile|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)|code-style\.pl|/Entries.*|/Repository|/Root|/Tag|/Template)$ {
@@ -34,7 +45,7 @@
     expires 30d;
     try_files $uri @drupal;
   }
-  
+
   # For Drupal7 use /styles instead of /imagecache
   location ~ ^/sites/.*/files/styles/ {
     try_files $uri @drupal;
