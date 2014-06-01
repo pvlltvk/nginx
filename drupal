@@ -37,5 +37,5 @@ location ~* ^/(install|update|memcached|apc|info|authorize).php$ {
 }
 
 location ~* ^.+\.php$ {
-  include fastcgi;
+  return 404;
 }
