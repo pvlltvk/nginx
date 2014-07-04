@@ -3,12 +3,6 @@
   # some images have no mime type
   default_type image/jpeg;
 
-  # Buffers definition. allows of up to 260k to be passed in memory.
-  client_body_buffer_size 1m;
-  proxy_buffering on;
-  proxy_buffer_size 4k;
-  proxy_buffers 8 32k;
-
   # 404 generated from php can be rather slow. Uncomment with care
   #error_page  404              /index.php;
 
