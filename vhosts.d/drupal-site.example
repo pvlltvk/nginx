@@ -3,8 +3,8 @@ server {
 
   server_name www.example.org;
 
-  access_log /var/log/nginx/example.access.log main;
-  error_log  /var/log/nginx/example.error.log warn;
+  access_log /var/log/nginx/example.access.log main  buffer=16k;
+  error_log  /var/log/nginx/example.error.log warn  buffer=16k;
 
   root /var/www/drupal7;
 

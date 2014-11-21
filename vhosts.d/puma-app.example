@@ -13,8 +13,8 @@ server {
 
   # path for static files
   root /myapp/public;
-  access_log /myapp/log/nginx.access.log;
-  error_log /myapp/log/nginx.error.log info;
+  access_log /myapp/log/nginx.access.log  buffer=16k;
+  error_log /myapp/log/nginx.error.log info  buffer=16k;
 
   # this rewrites all the requests to the maintenance.html
   # page if it exists in the doc root. This is for capistrano's
