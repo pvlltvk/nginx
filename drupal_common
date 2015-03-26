@@ -33,6 +33,18 @@
     return 404;
   }
 
+  ###
+  ### advagg_css and advagg_js support
+  ###
+  location ~* files/advagg_(?:css|js)/ {
+    gzip_static on;
+    access_log  off;
+    expires     max;
+    add_header  ETag "";
+    add_header  Cache-Control "max-age=31449600, no-transform, public";
+    try_files   $uri @drupal;
+  }
+
   # serve imagecache files directly or redirect to drupal if they do not exist
   location ~* imagecache {
     access_log off;
