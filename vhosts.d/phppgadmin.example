@@ -3,8 +3,8 @@ server {
 
   server_name phppgadmin.example.com;
 
-  access_log /var/log/nginx/phppgadmin.access.log main;
-  error_log  /var/log/nginx/phppgadmin.error.log warn;
+  access_log /var/log/nginx/phppgadmin.access.log main buffer=15k;
+  error_log  /var/log/nginx/phppgadmin.error.log warn buffer=15k;
 
   root /var/www/phppgadmin;
 
@@ -31,6 +31,6 @@ server {
   }
 
   location ~ \.php$ {
-    include fastcgi;
+    include fastcgi/fastcgi_settings;
   }
 }

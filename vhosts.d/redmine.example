@@ -17,8 +17,6 @@ server {
         add_header ETag "";
         add_header Cache-Control public;
 
-        gzip_static on;
-
         expires 1y;
     }
 
@@ -30,8 +28,6 @@ server {
         add_header Last-Modified "";
         add_header ETag "";
         add_header Cache-Control public;
-
-        gzip_static on;
 
         expires 1y;
 

@@ -1,17 +1,23 @@
 server {
-  listen *:8080;
-
-  server_name www.example.org;
-
-  access_log /var/log/nginx/example.access.log main  buffer=16k;
-  error_log  /var/log/nginx/example.error.log warn  buffer=16k;
-
-  root /var/www/drupal7;
-
-  include drupal;
+    server_name www.example.org;
+    return 301 http://example.org$request_uri;
 }
 
 server {
-        server_name example.org;
-        rewrite ^ $scheme://www.example.org$request_uri? permanent;
+    listen *:80;
+
+    server_name example.org;
+
+    access_log /var/log/nginx/example.access.log main  buffer=16k;
+    error_log  /var/log/nginx/example.error.log info  buffer=16k;
+
+    # Пишем логи в syslog-сервер, в тэге можно указывать только буквы и цифры
+    error_log  syslog:server=192.168.88.115:5515,tag=NginxErrorExampleOrg warn;
+
+    root /var/www/drupal7;
+
+    # Подключаем конфиги для друпала
+    include drupal/drupal;
+
+    include error/error_pages
 }
