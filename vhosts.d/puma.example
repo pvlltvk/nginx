@@ -2,11 +2,11 @@ server {
     listen 80;
     server_name example.org;
 
-    access_log  /var/log/nginx/example.access.log;
-    error_log  /var/log/nginx/example.error.log warn;
+    access_log  /var/log/nginx/example.access.log buffer=16k;
+    error_log  /var/log/nginx/example.error.log info;
 
     # Пишем логи в syslog-сервер, в тэге можно указывать только буквы и цифры
-    error_log  syslog:server=192.168.88.115:5515,tag=ExampleOrgError warn;
+    error_log  syslog:server=192.168.88.115:5515,tag=ExampleOrgError info;
 
     root /home/rubyworker/example/public;
     try_files /system/maintenance.html $uri $uri/index.html $uri.html @ruby;

@@ -2,8 +2,8 @@ server {
     listen   *:80;
     server_name redmine.example.com;
 
-    access_log /var/log/nginx/redmine.access.log;
-    error_log  /var/log/nginx/redmine.error.log;
+    access_log /var/log/nginx/redmine.access.log buffer=16k;
+    error_log  /var/log/nginx/redmine.error.log info;
 
     root       /path/to/redmine/public;
 

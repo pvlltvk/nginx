@@ -17,3 +17,6 @@ fastcgi_intercept_errors on;
 fastcgi_connect_timeout   15s;
 fastcgi_read_timeout      15s;
 fastcgi_send_timeout      15s;
+
+# Подключаем файл с параметрами, которые будут передаваться FastCGI-серверу
+include	fastcgi/fastcgi_params;
