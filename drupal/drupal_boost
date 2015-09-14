@@ -1,7 +1,7 @@
 # Добавляет указанную кодировку в поле “Content-Type” заголовка ответа
 charset	utf-8;
 
-# Некоторые изображения не имеют MIME-типа
+# Некоторые изображение не имеет MIME-типа
 default_type	image/jpeg;
 
 # Обрабатываем ошибочный ответ Drupal-ом
@@ -12,7 +12,7 @@ index	index.php;
 
 # "Дефолтный" location
 location / {
-    try_files	$uri	@drupal;
+    try_files	$uri	@cache;
 }
 
 # Запрещаем доступ к скрытым файлам и каталогам
@@ -69,9 +69,32 @@ location ~* \.(jpg|jpeg|gif|css|png|js|ico|html|swf|flv)$ {
     access_log		off;
 }
 
+# Задаем location для boost
+location @cache {
+# Если есть параметры, куки или если метод не GET/HEAD передаем обработку в друпал
+    error_page 418 = @drupal;
+
+    if ($query_string ~ ".+") {
+	return 418;
+    }
+    if ($http_cookie ~ SESS ) {
+	return 418;
+    }
+    if ($request_method !~ ^(GET|HEAD)$ ) {
+	return 418;
+    }
+
+# Запрещаем кэширование на стороне браузера
+    add_header Expires "Tue, 22 Sep 1974 08:00:00 GMT";
+    add_header Cache-Control "must-revalidate, post-check=0, pre-check=0";
+
+# Проверяем наличие закэшированных файлов, если их нет передаем обработку в друпал
+    try_files /cache/normal/$host/${uri}_.html /cache/perm/$host/${uri}_.css /cache/perm/$host/${uri}_.js /cache/$host/0$uri.html /cache/$host/0${uri}/index.html @drupal;
+}
+
 # Изменяем запрос и отправляем в location c разрешенными php-файлами
 location @drupal {
-    rewrite ^/(.*)$ /index.php?q=$1 last;
+      rewrite ^/(.*)$ /index.php?q=$1 last;
 }
 
 # Разрешаем выполнение только определенных php-файлов
