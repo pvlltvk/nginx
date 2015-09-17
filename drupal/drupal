@@ -82,7 +82,7 @@ location ~* ^/(index|cron|xmlrpc).php$ {
 # Доступ к служебным файлам только после авторизации
 location ~* ^/(install|update|memcached|apc|info|authorize).php$ {
     auth_basic "Restricted Area";
-    auth_basic_user_file /etc/nginx/htpasswd;
+    auth_basic_user_file /etc/nginx/security/htpasswd;
     include fastcgi/fastcgi_settings;
 }
 
