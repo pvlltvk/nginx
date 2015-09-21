@@ -12,7 +12,7 @@ ssl_protocols	TLSv1 TLSv1.1 TLSv1.2;
 ssl_dhparam	/etc/nginx/ssl/dhparam.pem;
 
 # Описывем разрешенные шифры
-ssl_ciphers kEECDH+AESGCM+AES128:kEECDH+AES128:kRSA+AESGCM+AES128:kRSA+AES128:!RC4:!aNULL:!eNULL:!MD5:!EXPORT:!LOW:!SEED:!CAMELLIA:!IDEA:!PSK:!SRP:!SSLv2;
+ssl_ciphers kEECDH+AESGCM+AES128:kEECDH+AES128:kEECDH:kEDH:-3DES:kRSA+AESGCM+AES128:kRSA+AES128:kEDH+3DES:DES-CBC3-SHA:!RC4:!aNULL:!eNULL:!MD5:!EXPORT:!LOW:!SEED:!CAMELLIA:!IDEA:!PSK:!SRP:!SSLv2;
 
 # Задаем тип и размеры кэша для хранения параметров сессий
 ssl_session_cache	shared:SSL:16m;
