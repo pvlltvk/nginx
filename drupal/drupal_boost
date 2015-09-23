@@ -1,14 +1,8 @@
 # Добавляет указанную кодировку в поле “Content-Type” заголовка ответа
 charset	utf-8;
 
-# Некоторые изображение не имеет MIME-типа
-default_type	image/jpeg;
-
 # Обрабатываем ошибочный ответ Drupal-ом
 #error_page	404	/index.php;
-
-# Задаем индексный файл
-index	index.php;
 
 # "Дефолтный" location
 location / {
@@ -21,7 +15,7 @@ location ~ (^|/)\. {
 }
 
 # Доступ к favicon без записи в access-лог и без записи в error-лог если файл не найден
-location = /favicon.ico {
+location ~* (apple-touch-icon|favicon|mstile) {
     log_not_found	off;
     access_log	off;
 }
@@ -40,7 +34,6 @@ location = /robots.txt {
 #
 #    try_files	$uri	@drupal;
 #}
-
 
 # Запрещаем доступ к некоторым типам файлов
 location ~* \.(engine|inc|info|install|module|profile|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$ {

@@ -1,14 +1,8 @@
 # Добавляет указанную кодировку в поле “Content-Type” заголовка ответа
 charset	utf-8;
 
-# Некоторые изображения не имеют MIME-типа
-default_type	image/jpeg;
-
 # Обрабатываем ошибочный ответ Drupal-ом
 #error_page	404	/index.php;
-
-# Задаем индексный файл
-index	index.php;
 
 # "Дефолтный" location
 location / {
@@ -41,7 +35,6 @@ location = /robots.txt {
 #    try_files	$uri	@drupal;
 #}
 
-
 # Запрещаем доступ к некоторым типам файлов
 location ~* \.(engine|inc|info|install|module|profile|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$ {
     return	404;
@@ -62,7 +55,7 @@ location ~ ^/sites/.*/files/styles/ {
     try_files	$uri	@drupal;
 }
 
-# Отдаем статику напрямую и не пишем в acces-логи
+# Отдаем статику напрямую и не пишем в access-логи
 location ~* \.(jpg|jpeg|gif|css|png|js|ico|html|swf|flv)$ {
     etag		on;
     expires		30d;
