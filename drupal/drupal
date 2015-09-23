@@ -15,7 +15,7 @@ location ~ (^|/)\. {
 }
 
 # Доступ к favicon без записи в access-лог и без записи в error-лог если файл не найден
-location = /favicon.ico {
+location ~* (apple-touch-icon|favicon|mstile) {
     log_not_found	off;
     access_log	off;
 }
