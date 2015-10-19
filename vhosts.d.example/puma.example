@@ -15,7 +15,10 @@ server {
 	proxy_pass    http://unix:/home/rubyworker/example/tmp/puma/puma-example.sock;
     }
 
-    location ~* \.(jpg|jpeg|gif|png|css|zip|tgz|gz|rar|bz2|exe|ppt|txt|tar|wav|bmp|rtf|js|ico)$ {
+    # Для Rails < 4.x
+    # location ~* ^/(images|javascripts|stylesheets)
+    # Для Rails >= 4.x
+    location /assets/
 	expires    30d;
 	etag    on;
 	log_not_found    off;
