@@ -24,16 +24,16 @@ server {
     }
 
     location ~* \.(bmp|jpg|jpeg|pjpeg|gif|ico|png|css|doc|txt|js|docx|rtf|ppt|pdf|swf)$ {
-	expires	30d;
-	etag	on;
-	log_not_found	on;
+	expires    30d;
+	etag    on;
+	log_not_found    on;
     }
 
     location @rewrite {
-	rewrite	^/(.*)$ /index.php?q=$1;
+        rewrite ^/(.*)$ /index.php?q=$1;
     }
 
     location ~ \.php$ {
-	include	fastcgi/fastcgi_settings;
+        include    fastcgi/settings;
     }
 }
