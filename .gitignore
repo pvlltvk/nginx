@@ -1,5 +1,8 @@
 rewrites/*
 !rewrites/.gitkeep
 vhosts.d/*
+!vhosts.d/.gitkeep
+ssl/certificates/*
+!ssl/certificates/.gitkeep
 *~
 *.sublime-*
