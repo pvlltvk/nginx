@@ -1,10 +1,10 @@
 server {
     server_name    www.example.org;
-    return 301 http://example.org$request_uri;
+    return    301 http://example.org$request_uri;
 }
 
 server {
-    listen *:80;
+    listen    *:80;
 
     server_name    example.org;
 
