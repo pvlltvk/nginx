@@ -17,7 +17,7 @@ server {
     root    /var/www/drupal7;
 
     # Подключаем конфиги для друпала
-    include    drupal/config;
+    include    drupal/config_78;
 
     # Указываем location для 500-х ошибок
     # include    error/50x_location;
