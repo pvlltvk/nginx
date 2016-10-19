@@ -1,3 +1,5 @@
+modules
+security/htpasswd
 rewrites/*
 !rewrites/.gitkeep
 vhosts.d/*
